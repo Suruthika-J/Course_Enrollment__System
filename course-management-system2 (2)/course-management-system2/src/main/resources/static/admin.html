@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Course Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="header-content">
+            <h1>Course Management System</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" data-section="dashboard">Dashboard</a></li>
+                    <li><a href="#" data-section="courses">Courses</a></li>
+                    <li><a href="#" data-section="students">Students</a></li>
+                    <li><a href="#" id="logout-btn">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="content-section active">
+            <h2>Admin Dashboard</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Total Courses</h3>
+                    <p id="total-courses">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Students</h3>
+                    <p id="total-students">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Enrollments</h3>
+                    <p id="total-enrollments">0</p>
+                </div>
+            </div>
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <ul id="activity-list">
+                    <!-- Activity items will be added dynamically -->
+                </ul>
+            </div>
+        </section>
+
+        <!-- Courses Management Section -->
+        <section id="courses-section" class="content-section">
+            <div class="section-header">
+                <h2>Course Management</h2>
+                <button id="add-course-btn" class="btn btn-primary">Add New Course</button>
+            </div>
+            
+            <div class="table-container">
+                <table id="courses-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Course Name</th>
+                            <th>Department</th>
+                            <th>Credits</th>
+                            <th>Capacity</th>
+                            <th>Enrolled</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Course data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Add/Edit Course Modal -->
+            <div id="course-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h3 id="modal-title">Add New Course</h3>
+                    <form id="course-form">
+                        <input type="hidden" id="course-id">
+                        <div class="form-group">
+                            <label for="course-name">Course Name</label>
+                            <input type="text" id="course-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-code">Course Code</label>
+                            <input type="text" id="course-code" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="department">Department</label>
+                            <select id="department" required>
+                                <option value="">Select Department</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Electrical Engineering">Electrical Engineering</option>
+                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                <option value="Business Administration">Business Administration</option>
+                                <option value="Mathematics">Mathematics</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="credits">Credits</label>
+                            <input type="number" id="credits" min="1" max="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="capacity">Capacity</label>
+                            <input type="number" id="capacity" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Course</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Students Management Section -->
+        <section id="students-section" class="content-section">
+            <h2>Student Management</h2>
+            <div class="search-container">
+                <input type="text" id="student-search" placeholder="Search students...">
+                <button class="btn btn-secondary">Search</button>
+            </div>
+            
+            <div class="table-container">
+                <table id="students-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Enrolled Courses</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Student data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Student Details Modal -->
+            <div id="student-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <h3>Student Details</h3>
+                    <div class="student-info">
+                        <div class="info-item">
+                            <span class="info-label">Name:</span>
+                            <span id="student-detail-name" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email:</span>
+                            <span id="student-detail-email" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Department:</span>
+                            <span id="student-detail-dept" class="info-value"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Enrollment Date:</span>
+                            <span id="student-detail-date" class="info-value"></span>
+                        </div>
+                    </div>
+                    
+                    <h4>Enrolled Courses</h4>
+                    <ul id="student-courses-list">
+                        <!-- Courses will be added dynamically -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
